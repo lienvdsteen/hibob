@@ -3,6 +3,11 @@
 require_relative "hibob/version"
 
 module Hibob
-  class Error < StandardError; end
-  # Your code goes here...
+  def self.configuration
+    @configuration ||= OpenStruct.new
+  end
+
+  def self.config
+    yield(configuration)
+  end
 end
