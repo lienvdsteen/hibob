@@ -7,7 +7,7 @@ require 'base64'
 
 module Bob
   class API
-    BASE_URL = 'https://api.hibob.com/'
+    BASE_URL = 'https://api.hibob.com'
 
     def self.get(endpoint, params = {})
       url = build_url(endpoint, params)
