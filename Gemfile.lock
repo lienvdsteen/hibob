@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bob (0.1.0)
+    bobhr (0.1.0)
       json
       rest-client (~> 2.0)
 
@@ -66,7 +66,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bob!
+  bobhr!
   rake (~> 13.0)
   rspec (~> 3.0)
   rubocop (~> 1.7)
