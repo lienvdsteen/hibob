@@ -1,9 +1,8 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   TargetRubyVersion: 3.0
-
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
+  NewCops: enable
 
 Style/StringLiteralsInInterpolation:
   Enabled: true
