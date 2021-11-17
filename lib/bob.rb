@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "hibob/version"
+require_relative "bob/version"
 
-module Hibob
+module Bob
   def self.configuration
     @configuration ||= OpenStruct.new
   end

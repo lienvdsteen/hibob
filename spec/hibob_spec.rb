@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Hibob do
+RSpec.describe Bob do
   it "has a version number" do
-    expect(Hibob::VERSION).not_to be nil
+    expect(Bob::VERSION).not_to be nil
   end
 
   it "does something useful" do

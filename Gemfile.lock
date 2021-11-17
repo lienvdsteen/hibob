@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hibob (0.1.0)
+    bob (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -46,7 +46,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hibob!
+  bob!
   rake (~> 13.0)
   rspec (~> 3.0)
   rubocop (~> 1.7)
