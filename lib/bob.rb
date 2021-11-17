@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 require_relative "bob/version"
+require_relative "bob/configuration"
 
 module Bob
-  def self.configuration
-    @configuration ||= OpenStruct.new
-  end
-
-  def self.config
-    yield(configuration)
-  end
+  extend Configuration
 end

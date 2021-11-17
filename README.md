@@ -1,9 +1,6 @@
 # Bob
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hibob`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
+Bob is a Ruby wrapper and CLI for the [Bob API](https://apidocs.hibob.com/).
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,7 +19,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Configuration example:
+
+```ruby
+
+Bob.configure do |config|
+  config.access_token = 'your-access-token'
+end
+```
+
+Usage examples:
+
+```ruby
+
+Bob.access_token = 'your-access-token'
+
+```
 
 ## Development
 
