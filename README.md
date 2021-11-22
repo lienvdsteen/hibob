@@ -19,12 +19,15 @@ Or install it yourself as:
 
 ## Usage
 
+Create a Service User in Bob and use the ID and token to configure the client.
+
 Configuration example:
 
 ```ruby
 
 Bob.configure do |config|
   config.access_token = 'your-access-token'
+  config.access_user_name = 'your-access-user-name'
 end
 ```
 
@@ -33,7 +36,7 @@ Usage examples:
 ```ruby
 
 Bob.access_token = 'your-access-token'
-
+employee = Bob::Employees.find(1)
 ```
 
 ## Development
