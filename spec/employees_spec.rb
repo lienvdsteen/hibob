@@ -22,7 +22,7 @@ RSpec.describe Bob::Employees do
       expect(RestClient).to have_received(:get).with(url, { Authorization: 'Basic Og==' }).once
     end
 
-    context 'request with query params' do
+    context 'when it is a request with query params' do
       let(:url) { 'https://api.hibob.com/v1/people?showInactive=true' }
 
       it 'performs request with params' do
