@@ -1,12 +1,14 @@
 # Bob
 
-Bob is a Ruby wrapper and CLI for the [Bob API](https://apidocs.hibob.com/).
+Bob is a Ruby wrapper and CLI for the [Bob API](https://apidocs.hibob.com/). To interact with this Ruby gem you need
+access to Bob. 
+
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'bob'
+gem 'bob-hr'
 ```
 
 And then execute:
@@ -15,7 +17,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install bob
+    $ gem install bob-hr
 
 ## Usage
 
@@ -37,6 +39,7 @@ Usage examples:
 
 Bob.access_token = 'your-access-token'
 employee = Bob::Employees.find(1)
+employee_trainings = Bob::Employees::Trainings.all(1)
 ```
 
 ## Development
