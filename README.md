@@ -8,7 +8,7 @@ access to Bob.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'bob-hr'
+gem 'bobhr'
 ```
 
 And then execute:
@@ -17,7 +17,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install bob-hr
+    $ gem install bobhr
 
 ## Usage
 
@@ -26,6 +26,7 @@ Create a Service User in Bob and use the ID and token to configure the client.
 Configuration example:
 
 ```ruby
+require 'bob'
 
 Bob.configure do |config|
   config.access_token = 'your-access-token'
