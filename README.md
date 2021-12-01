@@ -26,7 +26,7 @@ Create a Service User in Bob and use the ID and token to configure the client.
 Configuration example:
 
 ```ruby
-require 'bob'
+require 'bob' # not needed in Rails applications
 
 Bob.configure do |config|
   config.access_token = 'your-access-token'
