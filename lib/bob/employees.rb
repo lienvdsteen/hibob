@@ -9,11 +9,17 @@ require_relative 'employee/documents'
 module Bob
   class Employees < API
     def self.all(params = {})
-      get('people', params)
+      get('people', params)['employees']
     end
 
     def self.find(employee_id_or_email)
       get("people/#{employee_id_or_email}")
+    end
+
+    def self.find_by(field:, value:)
+      all.find do |employee|
+        employee[field] == value
+      end
     end
 
     # start date needs to be in ISO format
