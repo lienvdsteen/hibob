@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.2.0]
+
 - Change return in `Employees.all`
 - Add `Employees.find_by`
 

@@ -4,7 +4,6 @@ require 'spec_helper'
 
 RSpec.describe Bob::Employees do
   let(:url) { 'https://api.hibob.com/v1/people' }
-  let(:response) { double(body: '[{"test":"test"}]') }
 
   before do
     allow(RestClient).to receive(:get).with(url, { Authorization: 'Basic Og==' }).and_return(response)
@@ -12,6 +11,8 @@ RSpec.describe Bob::Employees do
   end
 
   describe '.all' do
+    let(:response) { double(body: { 'employees' => [{ 'test' => 'test' }] }.to_json) }
+
     it 'fetches a response' do
       result = described_class.all
       expect(result).to eq(['test' => 'test'])
@@ -34,6 +35,7 @@ RSpec.describe Bob::Employees do
 
   describe '.find' do
     let(:url) { 'https://api.hibob.com/v1/people/1' }
+    let(:response) { double(body: '[{"test":"test"}]') }
 
     it 'fetches a response' do
       result = described_class.find(1)

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bobhr (0.1.2)
+    bobhr (0.2.0)
       json
       rest-client (~> 2.0)
 
