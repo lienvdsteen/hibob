@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bobhr (0.3.0)
+    bobhr (0.3.1)
       json
       rest-client (~> 2.0)
 
@@ -18,7 +18,7 @@ GEM
     json (2.6.1)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2021.1115)
+    mime-types-data (3.2022.0105)
     netrc (0.11.0)
     parallel (1.21.0)
     parser (3.0.2.0)

@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.3.1]
+
+- Add endpoint for a specific time off event for an employee `TimeOff.find_for_employee(employee_id, time_off_event_id)`
+
 ## [0.3.0]
 
 - Change return in `TimeOff.all_changed_since`
