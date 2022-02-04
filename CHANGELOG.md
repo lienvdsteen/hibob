@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.3.0]
+
+- Change return in `TimeOff.all_changed_since`
+
 ## [0.2.0]
 
 - Change return in `Employees.all`

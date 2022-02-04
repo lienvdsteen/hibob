@@ -3,7 +3,7 @@
 module Bob
   class TimeOff < API
     def self.all_changed_since(since)
-      get('timeoff/requests/changes', { since: since })
+      get('timeoff/requests/changes', { since: since })['changes']
     end
 
     def self.today
