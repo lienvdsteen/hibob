@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+## [0.3.3]
+- Fix bug in `0.3.2` with `Reports.read(report_id)`. 
+
 ## [0.3.2]
 
 - Add endpoints for reporting: 

@@ -7,7 +7,7 @@ module Bob
     end
 
     def self.read(report_id)
-      get("company/reports/#{report_id}/download?format=csv")
+      get("company/reports/#{report_id}/download?format=csv", {}, true)
     end
   end
 end
