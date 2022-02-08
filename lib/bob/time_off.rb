@@ -9,5 +9,9 @@ module Bob
     def self.today
       get('timeoff/outtoday')
     end
+
+    def self.find_for_employee(employee_id, request_id)
+      get("timeoff/employees/#{employee_id}/requests/#{request_id}")
+    end
   end
 end
