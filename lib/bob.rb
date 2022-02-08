@@ -7,6 +7,7 @@ require_relative 'bob/employees'
 require_relative 'bob/time_off'
 require_relative 'bob/onboarding_wizards'
 require_relative 'bob/metadata'
+require_relative 'bob/reports'
 
 module Bob
   extend Configuration
