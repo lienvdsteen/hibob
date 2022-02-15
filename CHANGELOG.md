@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+## [0.3.4]
+- Add `Webhooks.calculate_signature(body:)` so you can use the gem to validate if the webhooks are coming from Bob itself.
+
 ## [0.3.3]
 - Fix bug in `0.3.2` with `Reports.read(report_id)`. 
 
