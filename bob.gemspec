@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'json'
+  spec.add_runtime_dependency 'net-sftp'
   spec.add_runtime_dependency 'rest-client', '~> 2.0'
 
   # For more information and examples about making a new gem, checkout our

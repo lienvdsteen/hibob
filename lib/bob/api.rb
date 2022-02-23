@@ -10,7 +10,7 @@ module Bob
   class API
     BASE_URL = 'https://api.hibob.com'
 
-    def self.get(endpoint, params = {}, csv_response = false)
+    def self.get(endpoint, params = {}, csv_response: false)
       url = build_url(endpoint, params)
       response = RestClient.get(url, headers)
       return create_csv(response.body) if csv_response
@@ -56,17 +56,19 @@ module Bob
       url
     end
 
-    private
-
     def self.create_csv(content)
-      content.gsub!("\r", '').gsub!("﻿", '')
+      file_name = SecureRandom.alphanumeric(15)
+
+      content.gsub!("\r", '').gsub!('﻿', '')
       splitted = content.split("\n")
-      CSV.open("response.csv", "wb") do |csv|
+      CSV.open("tmp/#{file_name}.csv", 'wb') do |csv|
         csv << splitted.shift.split(',')
         splitted.each do |row|
           csv << row.split(',')
         end
       end
+
+      "tmp/#{file_name}.csv"
     end
   end
 end

@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [0.4.0]
+
+- Change `Reports.read(report_id)` return value. Instead of returning the raw data it will return the file name.
+- Add `Report.sftp_upload(report_id:, sftp_details:)`. This will upload a report_id to any SFPT server you'd like.
+
 ## [0.3.4]
 - Add `Webhooks.calculate_signature(body:)` so you can use the gem to validate if the webhooks are coming from Bob itself.
 
