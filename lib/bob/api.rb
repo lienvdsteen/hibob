@@ -64,7 +64,7 @@ module Bob
       CSV.open("tmp/#{file_name}.csv", 'wb') do |csv|
         csv << splitted.shift.split(',')
         splitted.each do |row|
-          csv << row.split(',')
+          csv << CSV.parse_line(row)
         end
       end
 

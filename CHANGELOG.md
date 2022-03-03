@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [0.4.1]
+
+- Fix bug in `API.create_csv` when the value contains a comma. Moved to using `CVS.parse_line` to avoid bugs with the content of a row.
+- Rework `Report.sftp_upload` slightly. 
+
 ## [0.4.0]
 
 - Change `Reports.read(report_id)` return value. Instead of returning the raw data it will return the file name.

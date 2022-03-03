@@ -14,10 +14,13 @@ module Bob
 
     def self.sftp_upload(sftp_details:, report_id:)
       file_name = read(report_id)
+      uri = URI.parse("sftp://#{sftp_details[:host]}")
 
-      Net::SFTP.start(sftp_details[:host], sftp_details[:user], password: sftp_details[:password]) do |sftp|
+      Net::SFTP.start(uri.host, sftp_details[:user], password: sftp_details[:password]) do |sftp|
         sftp.upload!(file_name, sftp_details[:remote_file_path])
       end
+
+      true
     end
   end
 end
