@@ -8,17 +8,19 @@ require_relative 'employee/documents'
 
 module Bob
   class Employees < API
-    def self.all(params = {})
-      get('people', params)['employees']
+    def self.all(params = { includeHumanReadable: true })
+      response = get('people', params)
+      EmployeeParser.new(response).employees
     end
 
-    def self.find(employee_id_or_email)
-      get("people/#{employee_id_or_email}")
+    def self.find(employee_id_or_email, params: { includeHumanReadable: true })
+      response = get("people/#{employee_id_or_email}", params)
+      EmployeeParser.new(response).employee
     end
 
-    def self.find_by(field:, value:)
-      all.find do |employee|
-        employee[field] == value
+    def self.find_by(field:, value:, params: { includeHumanReadable: true })
+      all(params).find do |employee|
+        employee.send(field) == value
       end
     end
 

@@ -40,6 +40,7 @@ Usage examples:
 
 Bob.access_token = 'your-access-token'
 employee = Bob::Employees.find(1)
+employee.department
 employee_trainings = Bob::Employees::Trainings.all(1)
 ```
 
