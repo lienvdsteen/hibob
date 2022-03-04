@@ -4,7 +4,8 @@ module Bob
   module Employee
     class EquityGrants < API
       def self.all(employee_id)
-        get("people/#{employee_id}/equities")
+        response = get("people/#{employee_id}/equities")
+        EquityGrantParser.new(response).equity_grants
       end
 
       def self.create(employee_id, params = {})

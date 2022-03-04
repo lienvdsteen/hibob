@@ -4,7 +4,8 @@ module Bob
   module MetaData
     class CompanyFields < API
       def self.all
-        get('company/people/fields')
+        response = get('company/people/fields')
+        CompanyFieldParser.new(response).fields
       end
 
       def self.create(params = {})

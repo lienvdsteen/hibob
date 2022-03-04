@@ -3,19 +3,19 @@
 require 'spec_helper'
 
 RSpec.describe Bob::Employees do
-  let(:url) { 'https://api.hibob.com/v1/people' }
-
   before do
     allow(RestClient).to receive(:get).with(url, { Authorization: 'Basic Og==' }).and_return(response)
     allow(Bob).to receive(:configuration).and_return({ access_token: 'access-token', api_version: 'v1' })
   end
 
   describe '.all' do
-    let(:response) { double(body: { 'employees' => [{ 'test' => 'test' }] }.to_json) }
+    let(:url) { 'https://api.hibob.com/v1/people?includeHumanReadable=true' }
+
+    let(:response) { instance_double(RestClient::Response, body: { employees: [{ 'id' => 123 }] }.to_json) }
 
     it 'fetches a response' do
       result = described_class.all
-      expect(result).to eq(['test' => 'test'])
+      expect(result.first.id).to eq(123)
     end
 
     it 'performs request' do
@@ -34,12 +34,12 @@ RSpec.describe Bob::Employees do
   end
 
   describe '.find' do
-    let(:url) { 'https://api.hibob.com/v1/people/1' }
-    let(:response) { double(body: '[{"test":"test"}]') }
+    let(:url) { 'https://api.hibob.com/v1/people/1?includeHumanReadable=true' }
+    let(:response) { instance_double(RestClient::Response, body: { id: 123 }.to_json) }
 
     it 'fetches a response' do
       result = described_class.find(1)
-      expect(result).to eq(['test' => 'test'])
+      expect(result.id).to eq(123)
     end
 
     it 'performs request' do

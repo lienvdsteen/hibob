@@ -4,11 +4,13 @@ module Bob
   module MetaData
     class CompanyLists < API
       def self.all
-        get('company/named-lists')
+        response = get('company/named-lists')
+        CompanyListParser.new(response).lists
       end
 
       def self.find(list_name)
-        get("company/named-lists/#{list_name}")
+        response = get("company/named-lists/#{list_name}")
+        CompanyListParser.new(response).list
       end
 
       def self.add_item(list_name, params = {})
