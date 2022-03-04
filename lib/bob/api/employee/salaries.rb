@@ -4,7 +4,8 @@ module Bob
   module Employee
     class Salaries < API
       def self.all(employee_id)
-        get("people/#{employee_id}/salaries")
+        response = get("people/#{employee_id}/salaries")
+        SalaryParser.new(response).salaries
       end
 
       def self.create(employee_id, params = {})

@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.5.0]
+Rework all GET requests to return an object response instead of the parsed JSON. This is a breaking change as the return
+values for all the endpoints with GET requests will be different in this version.
+
 ## [0.4.1]
 
 - Fix bug in `API.create_csv` when the value contains a comma. Moved to using `CVS.parse_line` to avoid bugs with the content of a row.

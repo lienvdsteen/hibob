@@ -43,5 +43,3 @@ module Models
     end
   end
 end
-
-# employee = Bob::Employees.find(2641841023604491091)

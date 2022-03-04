@@ -5,6 +5,7 @@ require_relative 'employee/trainings'
 require_relative 'employee/salaries'
 require_relative 'employee/equity_grants'
 require_relative 'employee/documents'
+require_relative 'employee/variable_payments'
 
 module Bob
   class Employees < API

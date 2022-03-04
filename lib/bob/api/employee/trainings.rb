@@ -4,7 +4,8 @@ module Bob
   module Employee
     class Trainings < API
       def self.all(employee_id)
-        get("people/#{employee_id}/training")
+        response = get("people/#{employee_id}/training")
+        TrainingParser.new(response).trainings
       end
 
       def self.create(employee_id, params = {})

@@ -3,7 +3,8 @@
 module Bob
   class OnboardingWizards < API
     def self.all
-      get('onboarding/wizards')
+      response = get('onboarding/wizards')
+      OnboardingWizardParser.new(response).wizards
     end
   end
 end

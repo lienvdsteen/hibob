@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
-class EmployeeParser
-  attr_reader :json_response
-
-  def initialize(json_response)
-    @json_response = json_response
-  end
-
+class EmployeeParser < BaseParser
   def employee
     Models::Employee.new(json_response)
   end
