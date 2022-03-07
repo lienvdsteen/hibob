@@ -15,7 +15,25 @@ module Models
     end
 
     def return_date
-      @return_date = Date.parse(end_date) + 1.day
+      @return_date = parsed_end_date + 1.day
+    end
+
+    def multiple_days?
+      total_days_off > 1
+    end
+
+    def total_days_off
+      (start_date...end_date).count + 1
+    end
+
+    private
+
+    def parsed_start_date
+      Date.parse(start_date)
+    end
+
+    def parsed_end_date
+      Date.parse(end_date)
     end
   end
 end

@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.5.1]
+
+- Add `TimeOff#multiple_days?` and `TimeOff#total_days_off` to return more details about a time off event.
+
 ## [0.5.0]
 Rework all GET requests to return an object response instead of the parsed JSON. This is a breaking change as the return
 values for all the endpoints with GET requests will be different in this version.
