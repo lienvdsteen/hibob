@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.5.2]
+
+- Small fix to `Util.underscore` to also replace a space with an underscore (`word.tr!(' ', '_')`).
+
 ## [0.5.1]
 
 - Add `TimeOff#multiple_days?` and `TimeOff#total_days_off` to return more details about a time off event.
