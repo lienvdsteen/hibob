@@ -20,6 +20,8 @@ module Bob
         sftp.upload!(file_name, sftp_details[:remote_file_path])
       end
 
+      File.delete(file_name)
+
       true
     end
   end

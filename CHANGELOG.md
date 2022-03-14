@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.5.3]
+
+- Remove temporary file in `Reports.sftp_upload` after uploading to the SFTP server.
+
 ## [0.5.2]
 
 - Small fix to `Util.underscore` to also replace a space with an underscore (`word.tr!(' ', '_')`).
