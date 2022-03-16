@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.5.4]
+
+- Add `Employees.all_people_managers`. This is introduced so we first filter out the managers and then create objects.
+
 ## [0.5.3]
 
 - Remove temporary file in `Reports.sftp_upload` after uploading to the SFTP server.

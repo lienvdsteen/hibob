@@ -14,6 +14,11 @@ module Bob
       EmployeeParser.new(response).employees
     end
 
+    def self.all_people_managers(params = { includeHumanReadable: true })
+      response = get('people', params)
+      EmployeeParser.new(response).managers
+    end
+
     def self.find(employee_id_or_email, params: { includeHumanReadable: true })
       response = get("people/#{employee_id_or_email}", params)
       EmployeeParser.new(response).employee

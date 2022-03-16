@@ -8,4 +8,10 @@ class EmployeeParser < BaseParser
   def employees
     json_response['employees'].map { |attributes| Models::Employee.new(attributes) }
   end
+
+  def managers
+    json_response['employees']
+      .select { |employee| employee['work']['isManager'] }
+      .map { |attributes| Models::Employee.new(attributes) }
+  end
 end
