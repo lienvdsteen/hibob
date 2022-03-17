@@ -38,8 +38,36 @@ module Models
       human_readable.work.custom_columns.column_1629151373898
     end
 
+    def has_manager?
+      manager.present?
+    end
+
     def manager
       work.reports_to
+    end
+
+    def has_second_level_manager?
+      work.second_level_manager.present?
+    end
+
+    def second_level_manager
+      @second_level_manager ||= Bob::Employees.find(work.second_level_manager)
+    end
+
+    def has_third_level_manager?
+      third_level_manager.present?
+    end
+
+    def third_level_manager
+      second_level_manager.manager
+    end
+
+    def has_fourth_level_manager?
+      second_level_manager.work.second_level_manager.present?
+    end
+
+    def fourth_level_manager
+      second_level_manager.second_level_manager
     end
   end
 end

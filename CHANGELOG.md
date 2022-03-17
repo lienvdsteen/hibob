@@ -2,6 +2,17 @@
 
 ## [0.5.4]
 
+Add extra methods to `Models::Employee` related to the reporting line of an employee:
+- `#has_manager?`
+- `#has_second_level_manager?`
+- `#second_level_manager`
+- `#has_third_level_manager?`
+- `#third_level_manager`
+- `#has_fourth_level_manager?`
+- `#fourth_level_manager`
+
+## [0.5.4]
+
 - Add `Employees.all_people_managers`. This is introduced so we first filter out the managers and then create objects.
 
 ## [0.5.3]
