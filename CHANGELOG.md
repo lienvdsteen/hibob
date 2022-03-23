@@ -1,6 +1,10 @@
 ## [Unreleased]
 
-## [0.5.4]
+## [0.5.6]
+
+- Add `Employee#cost_center` to more easily fetch the cost center for an employee
+
+## [0.5.5]
 
 Add extra methods to `Models::Employee` related to the reporting line of an employee:
 - `#has_manager?`

@@ -69,5 +69,9 @@ module Models
     def fourth_level_manager
       second_level_manager.second_level_manager
     end
+
+    def cost_center
+      payroll.custom.field_1634476091511
+    end
   end
 end
