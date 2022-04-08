@@ -73,5 +73,9 @@ module Models
     def cost_center
       payroll.custom.field_1634476091511
     end
+
+    def personal_email
+      home.private_email
+    end
   end
 end
