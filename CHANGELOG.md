@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+## [0.5.7]
+
+- Add `Employee#personal_email` 
+- Add `api_key` to the configuration hash. Some API endpoints can only be executed as an employee (not as a Service User).
+- Fix `Documents.add_public_document` and `Documents.add_private_document` to use the api key.
+
 ## [0.5.6]
 
 - Add `Employee#cost_center` to more easily fetch the cost center for an employee
