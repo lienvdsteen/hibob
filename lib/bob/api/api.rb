@@ -12,21 +12,25 @@ module Bob
 
     def self.get(endpoint, params = {}, csv_response: false)
       url = build_url(endpoint, params)
-      response = RestClient.get(url, headers)
+      response = RestClient.get(url, authorization_header)
       return create_csv(response.body) if csv_response
 
       JSON.parse(response.body)
     end
 
-    def self.post(endpoint, params = {})
+    def self.post(endpoint, params = {}, use_api_key: false)
       url = build_url(endpoint)
-      response = RestClient.post(url, params.to_json, headers.merge(content_headers))
+      response = RestClient.post(
+        url,
+        params.to_json,
+        authorization_header(use_api_key: use_api_key).merge(content_headers)
+      )
       response.code
     end
 
     def self.post_media(endpoint, params = {})
       url = build_url(endpoint)
-      response = RestClient.post(url, params.to_json, media_headers.merge(content_headers))
+      response = RestClient.post(url, params.to_json, authorization_header.merge(content_headers))
       response.code
     end
 
@@ -36,22 +40,26 @@ module Bob
       response.code
     end
 
-    def self.put(endpoint, params = {})
+    def self.put(endpoint, params = {}, use_api_key: false)
       url = build_url(endpoint)
-      response = RestClient.put(url, params.to_json, headers.merge(content_headers))
+      response = RestClient.put(
+        url,
+        params.to_json,
+        authorization_header(use_api_key: use_api_key).merge(content_headers)
+      )
       response.code
     end
 
-    def self.headers
-      {
-        Authorization: "Basic #{Base64.strict_encode64("#{Bob.access_user_name}:#{Bob.access_token}")}"
-      }
-    end
-
-    def self.media_headers
-      {
-        Authorization: Bob.api_key
-      }
+    def self.authorization_header(use_api_key: false)
+      if use_api_key
+        {
+          Authorization: Bob.api_key
+        }
+      else
+        {
+          Authorization: "Basic #{Base64.strict_encode64("#{Bob.access_user_name}:#{Bob.access_token}")}"
+        }
+      end
     end
 
     def self.content_headers
