@@ -24,6 +24,12 @@ module Bob
       response.code
     end
 
+    def self.post_media(endpoint, params = {})
+      url = build_url(endpoint)
+      response = RestClient.post(url, params.to_json, media_headers.merge(content_headers))
+      response.code
+    end
+
     def self.delete(endpoint)
       url = build_url(endpoint)
       response = RestClient.delete(url)
@@ -39,6 +45,12 @@ module Bob
     def self.headers
       {
         Authorization: "Basic #{Base64.strict_encode64("#{Bob.access_user_name}:#{Bob.access_token}")}"
+      }
+    end
+
+    def self.media_headers
+      {
+        Authorization: Bob.api_key
       }
     end
 
