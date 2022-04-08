@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [0.5.8]
+
+- Rework usage of `use_api_key` for the endpoints that only allow employee based requests vs Service user
+- Add `WorkHistory.all` and `WorkHistory.update` so you can fetch the work table rows and update the row data if needed.
+
 ## [0.5.7]
 
 - Add `Employee#personal_email` 
