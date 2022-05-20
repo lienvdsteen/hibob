@@ -34,6 +34,10 @@ module Models
       address.site_city || address.city
     end
 
+    def country
+      address.country || address.site_country
+    end
+
     def role_level
       human_readable.work.custom_columns.column_1629151373898
     end
@@ -76,6 +80,10 @@ module Models
 
     def personal_email
       home.private_email
+    end
+
+    def linkedin_profile
+      human_readable.about.social_data&.linkedin
     end
   end
 end

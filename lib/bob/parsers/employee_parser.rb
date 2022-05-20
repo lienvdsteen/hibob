@@ -14,4 +14,10 @@ class EmployeeParser < BaseParser
       .select { |employee| employee['work']['isManager'] }
       .map { |attributes| Models::Employee.new(attributes) }
   end
+
+  def starters_on(date)
+    json_response['employees']
+      .select { |employee| employee['work']['startDate'] == date }
+      .map { |attributes| Models::Employee.new(attributes) }
+  end
 end

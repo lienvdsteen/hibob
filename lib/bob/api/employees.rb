@@ -20,6 +20,11 @@ module Bob
       EmployeeParser.new(response).managers
     end
 
+    def self.starts_on(date = Date.current.to_s, params = { includeHumanReadable: true })
+      response = get('people', params)
+      EmployeeParser.new(response).starters_on(date)
+    end
+
     def self.find(employee_id_or_email, params: { includeHumanReadable: true })
       response = get("people/#{employee_id_or_email}", params)
       EmployeeParser.new(response).employee

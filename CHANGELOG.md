@@ -1,7 +1,10 @@
 ## [Unreleased]
 
-## [0.5.8]
+## [0.5.9]
+- Add `Employees.starts_on` to get a list of employees that started on a certain date. By default it will fall back on today's date. Note the date needs to be in the following string format `YYYY-MM-DD`
+- Add `Employee#linkedin_profile` and `Employee.country` to the Employee model.
 
+## [0.5.8]
 - Rework usage of `use_api_key` for the endpoints that only allow employee based requests vs Service user
 - Add `WorkHistory.all` and `WorkHistory.update` so you can fetch the work table rows and update the row data if needed.
 

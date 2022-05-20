@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Bob
-  VERSION = '0.5.8'
+  VERSION = '0.5.9'
 end
