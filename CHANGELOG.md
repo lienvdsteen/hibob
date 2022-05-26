@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+## [0.5.10]
+- Fix for OnboardingWizardParser. It was trying to access a wrong key in the hash. 
+
 ## [0.5.9]
 - Add `Employees.starts_on` to get a list of employees that started on a certain date. By default it will fall back on today's date. Note the date needs to be in the following string format `YYYY-MM-DD`
 - Add `Employee#linkedin_profile` and `Employee.country` to the Employee model.

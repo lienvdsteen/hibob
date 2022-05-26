@@ -2,6 +2,6 @@
 
 class OnboardingWizardParser < BaseParser
   def wizards
-    json_response['values'].map { |attributes| Models::OnboardingWizard.new(attributes) }
+    json_response['wizards'].map { |attributes| Models::OnboardingWizard.new(attributes) }
   end
 end
