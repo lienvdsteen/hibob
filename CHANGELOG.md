@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+## [0.5.11]
+- Add `LifecycleHistory.all` to fetch the rows in the lifecycle table.
+
 ## [0.5.10]
 - Fix for OnboardingWizardParser. It was trying to access a wrong key in the hash. 
 
