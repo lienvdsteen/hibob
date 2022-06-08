@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.5.12]
+- Small change in the `TimeOff#employee` method to look at either email or employee_id to fetch the employee linked with the event. 
+- Fixes in `Employee` methods related to fetching the different levels of managers. To account for a case when they don't have a (second level) manager.
+
 ## [0.5.11]
 - Add `LifecycleHistory.all` to fetch the rows in the lifecycle table.
 

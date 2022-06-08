@@ -47,15 +47,15 @@ module Models
     end
 
     def manager
-      work.reports_to
+      work&.reports_to
     end
 
     def has_second_level_manager?
-      work.second_level_manager.present?
+      work&.second_level_manager.present?
     end
 
     def second_level_manager
-      @second_level_manager ||= Bob::Employees.find(work.second_level_manager)
+      @second_level_manager ||= Bob::Employees.find(work&.second_level_manager)
     end
 
     def has_third_level_manager?
@@ -63,15 +63,15 @@ module Models
     end
 
     def third_level_manager
-      second_level_manager.manager
+      second_level_manager&.manager
     end
 
     def has_fourth_level_manager?
-      second_level_manager.work.second_level_manager.present?
+      second_level_manager.work&.second_level_manager.present?
     end
 
     def fourth_level_manager
-      second_level_manager.second_level_manager
+      second_level_manager&.second_level_manager
     end
 
     def cost_center

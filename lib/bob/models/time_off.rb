@@ -3,7 +3,8 @@
 module Models
   class TimeOff < Models::Base
     def employee
-      @employee ||= Bob::Employees.find(employee_id)
+      identification = email.present? ? email : employee_id
+      @employee ||= Bob::Employees.find(identification)
     end
 
     def parental_leave?
