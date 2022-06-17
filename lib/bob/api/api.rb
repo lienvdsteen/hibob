@@ -34,6 +34,22 @@ module Bob
       response.code
     end
 
+    def self.post_file(endpoint, file_path)
+      url = build_url(endpoint)
+      payload = {
+        multipart: true,
+        file: File.new(file_path)
+      }
+
+      headers = {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+        Authorization: "Basic #{Base64.strict_encode64("#{Bob.access_user_name}:#{Bob.access_token}")}"
+      }
+      response = RestClient.post(url, payload, headers)
+      response.code
+    end
+
     def self.delete(endpoint)
       url = build_url(endpoint)
       response = RestClient.delete(url)
