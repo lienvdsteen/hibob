@@ -1,9 +1,15 @@
 
 ## [Unreleased]
 
-## [0.5.12]
+## [0.5.14]
+
+- Bug fix when the field from Bob is numeric only.
+
+## [0.5.13]
+
 - Add `Employee::Documents.upload_public_document` to add the endpoint to upload a document to the employee's shared file
 
+## [0.5.12]
 - Small change in the `TimeOff#employee` method to look at either email or employee_id to fetch the employee linked with the event. 
 - Fixes in `Employee` methods related to fetching the different levels of managers. To account for a case when they don't have a (second level) manager.
 
