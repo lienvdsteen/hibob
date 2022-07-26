@@ -1,6 +1,10 @@
 
 ## [Unreleased]
 
+## [0.5.15]
+
+- Bug fix for previous fix when the field is a symbol.
+
 ## [0.5.14]
 
 - Bug fix when the field from Bob is numeric only.
