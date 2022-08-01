@@ -34,7 +34,7 @@ module Bob
       response.code
     end
 
-    def self.post_file(endpoint, file_path)
+    def self.post_file(endpoint, file_path) # rubocop:disable Metrics/MethodLength
       url = build_url(endpoint)
       payload = {
         multipart: true,
