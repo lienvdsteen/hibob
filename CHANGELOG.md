@@ -1,6 +1,11 @@
 
 ## [Unreleased]
 
+## [0.5.16]
+
+- Add `Employees.all_leavers(start_date:, end_date)`. Returns all the employees that left the company between the start and end date.
+
+
 ## [0.5.15]
 
 - Bug fix for previous fix when the field is a symbol.

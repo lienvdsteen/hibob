@@ -16,6 +16,15 @@ module Bob
       EmployeeParser.new(response).employees
     end
 
+    def self.all_leavers(start_date:, end_date:)
+      all({ includeHumanReadable: true, showInactive: true }).select do |employee|
+        next unless employee.internal.status == 'Inactive' && employee.internal.termination_date.present?
+
+        termination_date = Date.parse(employee.internal.termination_date)
+        (start_date..end_date).include?(termination_date)
+      end
+    end
+
     def self.all_people_managers(params = { includeHumanReadable: true })
       response = get('people', params)
       EmployeeParser.new(response).managers
