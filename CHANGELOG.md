@@ -1,10 +1,13 @@
 
 ## [Unreleased]
 
+## [0.5.17]
+
+- Add `Employee::TimeOff.balance(employee_id:, policy_type:, date:)` endpoint. Returns the balance for that employee in the policy type until the given date.
+
 ## [0.5.16]
 
 - Add `Employees.all_leavers(start_date:, end_date)`. Returns all the employees that left the company between the start and end date.
-
 
 ## [0.5.15]
 
