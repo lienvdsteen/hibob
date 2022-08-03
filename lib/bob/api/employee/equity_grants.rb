@@ -12,8 +12,12 @@ module Bob
         post("people/#{employee_id}/equities", params)
       end
 
+      def self.update(employee_id, entry_id, params)
+        put("people/#{employee_id}/equities/#{entry_id}", params)
+      end
+
       def self.remove(employee_id, entry_id)
-        delete("people/#{employee_id}/salaries/#{entry_id}")
+        delete("people/#{employee_id}/equities/#{entry_id}")
       end
     end
   end

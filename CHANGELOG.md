@@ -1,6 +1,10 @@
 
 ## [Unreleased]
 
+## [0.5.18]
+
+- Add several missing endpoints. 
+
 ## [0.5.17]
 
 - Add `Employee::TimeOff.balance(employee_id:, policy_type:, date:)` endpoint. Returns the balance for that employee in the policy type until the given date.

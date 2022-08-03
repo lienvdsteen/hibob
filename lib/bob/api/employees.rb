@@ -9,6 +9,7 @@ require_relative 'employee/variable_payments'
 require_relative 'employee/work_history'
 require_relative 'employee/lifecycle_history'
 require_relative 'employee/time_off'
+require_relative 'employee/employment_history'
 
 module Bob
   class Employees < API
