@@ -10,6 +10,8 @@ module Models
         instance_variable_set("@#{k}", v.is_a?(Hash) ? Models::Base.new(v) : v)
         self.class.send(:define_method, k, proc { instance_variable_get("@#{k}") })
         self.class.send(:define_method, "#{k}=", proc { |val| instance_variable_set("@#{k}", val) })
+      rescue NameError
+        next
       end
     end
   end

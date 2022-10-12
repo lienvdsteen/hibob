@@ -1,6 +1,10 @@
 
 ## [Unreleased]
 
+## [0.5.20]
+
+- Change the output for the cost center so it's the human readable field
+
 ## [0.5.18]
 
 - Add several missing endpoints. 
