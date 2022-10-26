@@ -48,6 +48,10 @@ module Bob
       end
     end
 
+    def self.update(employee_id:, params:)
+      put("people/#{employee_id}", params)
+    end
+
     # start date needs to be in ISO format
     def self.update_start_date(employee_id, start_date)
       post("employees/#{employee_id}", { startDate: start_date })

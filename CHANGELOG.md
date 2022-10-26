@@ -1,6 +1,9 @@
 
 ## [Unreleased]
 
+## [0.5.21]
+- Add new API endpoint to update an employee: `Employees.update(employee_id:, params:)`
+
 ## [0.5.20]
 
 - Change the output for the cost center so it's the human readable field
