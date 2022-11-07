@@ -31,11 +31,11 @@ module Models
     end
 
     def city
-      address.site_city || address.city
+       address.city
     end
 
     def country
-      address.country || address.site_country
+      address.country
     end
 
     def role_level
