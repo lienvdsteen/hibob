@@ -19,11 +19,11 @@ module Models
     end
 
     def division
-      human_readable.work.custom_columns.column_1629151319875
+      human_readable.work.custom_columns&.column_1629151319875
     end
 
     def team
-      human_readable.work.custom_columns.column_1642024758438
+      human_readable.work.custom_columns&.column_1642024758438
     end
 
     def entity

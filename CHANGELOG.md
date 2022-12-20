@@ -1,6 +1,9 @@
 
 ## [Unreleased]
 
+## [0.5.23]
+- Fixes when item not set
+c
 ## [0.5.21]
 - Add new API endpoint to update an employee: `Employees.update(employee_id:, params:)`
 
