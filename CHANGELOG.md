@@ -1,6 +1,12 @@
 
 ## [Unreleased]
 
+## [0.5.24]
+- Fix in `CompanyListParser#list`
+
+## [0.5.24]
+- Fix in `Employee::EmploymentHistory.all`
+
 ## [0.5.23]
 - Fixes when item not set
 c

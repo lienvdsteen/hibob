@@ -5,7 +5,7 @@ module Bob
     class EmploymentHistory < API
       def self.all(employee_id)
         response = get("people/#{employee_id}/employment")
-        EmploymentHistoryParser.new(response).work_histories
+        EmploymentHistoryParser.new(response).employment_histories
       end
 
       def self.create(employee_id, params)
