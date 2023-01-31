@@ -1,7 +1,10 @@
 
 ## [Unreleased]
 
-## [0.5.24]
+## [0.5.26]
+- Fix in `Employee#cost_center`
+
+## [0.5.25]
 - Fix in `CompanyListParser#list`
 
 ## [0.5.24]
