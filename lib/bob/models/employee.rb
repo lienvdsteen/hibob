@@ -31,7 +31,7 @@ module Models
     end
 
     def city
-       address.city
+      address.city
     end
 
     def country

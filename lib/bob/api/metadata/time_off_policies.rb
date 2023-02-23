@@ -8,12 +8,12 @@ module Bob
       end
 
       def self.find(policy_name)
-        response = get("timeoff/policies", { policyName: policy_name })
+        response = get('timeoff/policies', { policyName: policy_name })
         BaseParser.new(response).fields
       end
 
       def self.names_for(policy_name)
-        get("timeoff/policies/names", { policyTypeName: policy_name })['policies']
+        get('timeoff/policies/names', { policyTypeName: policy_name })['policies']
       end
     end
   end

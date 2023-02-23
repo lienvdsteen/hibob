@@ -2,7 +2,7 @@
 
 class CompanyListParser < BaseParser
   def list
-    json_response['values'].map {|attributes| Models::CompanyList.new(attributes) }
+    json_response['values'].map { |attributes| Models::CompanyList.new(attributes) }
   end
 
   def lists
