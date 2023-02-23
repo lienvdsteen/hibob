@@ -10,24 +10,17 @@ module Bob
   class API
     BASE_URL = 'https://api.hibob.com'
 
-    MAX_RETRIES = 3
-
     def self.get(endpoint, params = {}, csv_response: false)
-      retries = 0
-
-      begin
-        url = build_url(endpoint, params)
-        response = RestClient.get(url, authorization_header)
-      rescue
-        if (retries += 1) < MAX_RETRIES
-          sleep 60
-          retry
-        end
-      end
-
-        return create_csv(response.body) if csv_response
+      url = build_url(endpoint, params)
+      response = RestClient.get(url, authorization_header)
+      return create_csv(response.body) if csv_response
 
       JSON.parse(response.body)
+    end
+
+      return create_csv(response.body) if csv_response
+
+      response.nil? ? response : JSON.parse(response.body)
     end
 
     def self.post(endpoint, params = {}, use_api_key: false)
