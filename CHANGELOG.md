@@ -2,6 +2,9 @@
 ## [Unreleased]
 
 ## [0.5.26]
+- Remove retry mechanism
+
+## [0.5.26]
 - Fix in `Employee#cost_center`
 
 ## [0.5.25]

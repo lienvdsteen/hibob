@@ -18,11 +18,6 @@ module Bob
       JSON.parse(response.body)
     end
 
-      return create_csv(response.body) if csv_response
-
-      response.nil? ? response : JSON.parse(response.body)
-    end
-
     def self.post(endpoint, params = {}, use_api_key: false)
       url = build_url(endpoint)
       response = RestClient.post(
