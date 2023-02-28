@@ -4,7 +4,7 @@
 ## [0.5.28]
 - Allow Sandbox calls
 
-## [0.5.26]
+## [0.5.27]
 - Remove retry mechanism
 
 ## [0.5.26]
