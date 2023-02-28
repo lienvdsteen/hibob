@@ -2,7 +2,7 @@
 
 module Bob
   module Configuration
-    VALID_OPTIONS_KEYS = %i[access_token access_user_name api_version api_key].freeze
+    VALID_OPTIONS_KEYS = %i[access_token access_user_name api_version api_key use_sandbox].freeze
     attr_accessor(*VALID_OPTIONS_KEYS)
 
     # Sets all configuration options to their default values
@@ -27,6 +27,7 @@ module Bob
       self.access_token = ENV['ACCESS_TOKEN']
       self.access_user_name = ENV['ACCESS_USER_NAME']
       self.api_key = ENV['API_KEY']
+      self.use_sandbox = false
     end
   end
 end

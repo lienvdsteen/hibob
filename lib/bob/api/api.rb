@@ -9,6 +9,7 @@ require 'csv'
 module Bob
   class API
     BASE_URL = 'https://api.hibob.com'
+    SANDBOX_URL = 'https://api.sandbox.hibob.com'
 
     def self.get(endpoint, params = {}, csv_response: false)
       url = build_url(endpoint, params)
@@ -86,7 +87,8 @@ module Bob
     end
 
     def self.build_url(endpoint, params = {})
-      url = "#{BASE_URL}/#{Bob.api_version}/#{endpoint}"
+      url = "#{BASE_URL}/#{Bob.api_version}/#{endpoint}" unless Bob.use_sandbox
+      url = "#{SANDBOX_URL}/#{Bob.api_version}/#{endpoint}" if Bob.use_sandbox
       url += "?#{URI.encode_www_form(params)}" unless params.empty?
 
       url

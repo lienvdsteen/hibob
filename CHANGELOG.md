@@ -1,6 +1,9 @@
 
 ## [Unreleased]
 
+## [0.5.28]
+- Allow Sandbox calls
+
 ## [0.5.26]
 - Remove retry mechanism
 
