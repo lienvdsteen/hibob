@@ -1,5 +1,9 @@
 
+
 ## [Unreleased]
+
+## [0.5.29]
+- Rework `Employees.all_leavers` to take into account garden leave.
 
 ## [0.5.28]
 - Allow Sandbox calls

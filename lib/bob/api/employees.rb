@@ -20,9 +20,24 @@ module Bob
 
     def self.all_leavers(start_date:, end_date:)
       all({ includeHumanReadable: true, showInactive: true }).select do |employee|
+
         next unless employee.internal.status == 'Inactive' && employee.internal.termination_date.present?
 
-        termination_date = Date.parse(employee.internal.termination_date)
+        # Don't process employees that left before the period we are looking into
+        internal_term_date = Date.parse(employee.internal.termination_date)
+        next if internal_term_date.before?(start_date)
+
+        # Need to fetch lifecycle statuses, as garden leavers have left before the actual internal term date
+        lifecycle_statuses = Bob::Employee::LifecycleHistory.all(employee.id)
+        garden_leave_status = lifecycle_statuses.find { |status| status.status == 'garden leave' }
+
+        if garden_leave_status
+          lifecycle_statuses = Bob::Employee::LifecycleHistory.all(employee.id)
+          garden_leave_status = lifecycle_statuses.find { |status| status.status == 'garden leave' }
+          termination_date = Date.parse(garden_leave_status.effective_date)
+        end
+
+        termination_date ||= Date.parse(employee.internal.termination_date)
         (start_date..end_date).include?(termination_date)
       end
     end
