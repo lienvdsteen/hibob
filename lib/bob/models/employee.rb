@@ -27,7 +27,7 @@ module Models
     end
 
     def entity
-      human_readable.work.custom_columns.column_1633980105047
+      human_readable.work.custom_columns&.column_1633980105047
     end
 
     def city
