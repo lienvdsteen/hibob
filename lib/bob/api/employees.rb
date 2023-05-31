@@ -10,6 +10,7 @@ require_relative 'employee/work_history'
 require_relative 'employee/lifecycle_history'
 require_relative 'employee/time_off'
 require_relative 'employee/employment_history'
+require_relative 'employee/custom_tables'
 
 module Bob
   class Employees < API

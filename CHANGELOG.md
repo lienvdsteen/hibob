@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+## [0.5.31]
+- Add `Employee::CustomTables.rows` and `Employee::CustomTables.add_row` endpoint. 
+
 ## [0.5.29]
 - Rework `Employees.all_leavers` to take into account garden leave.
 

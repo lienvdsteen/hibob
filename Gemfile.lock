@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bobhr (0.5.30)
+    bobhr (0.5.31)
       json
       net-sftp
       rest-client (~> 2.0)
