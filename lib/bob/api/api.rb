@@ -26,6 +26,8 @@ module Bob
         params.to_json,
         authorization_header(use_api_key: use_api_key).merge(content_headers)
       )
+    rescue RestClient::BadRequest => e
+      p e
       response.code
     end
 
@@ -53,7 +55,7 @@ module Bob
 
     def self.delete(endpoint)
       url = build_url(endpoint)
-      response = RestClient.delete(url)
+      response = RestClient.delete(url, authorization_header)
       response.code
     end
 

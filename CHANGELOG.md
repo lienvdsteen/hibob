@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.5.32]
+- Add `Employee::CustomTables.remove_row` endpoint.
+- Fix auth headers not being added for delete requests.
+
 ## [0.5.31]
 - Add `Employee::CustomTables.rows` and `Employee::CustomTables.add_row` endpoint. 
 
