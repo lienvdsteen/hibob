@@ -85,5 +85,22 @@ module Models
     def linkedin_profile
       human_readable.about.social_data&.linkedin
     end
+
+    def currency
+      payroll.salary.payment.currency
+    end
+
+    def base_pay
+      payroll.salary.payment.value
+    end
+
+    def variable_pay
+      # TODO: check if we handle all the types with this field
+      payroll.variable.field_255298499.amount&.value || 0.0
+    end
+
+    def job_role_id
+      human_readable.custom.category_1645574919835.field_1657052825123
+    end
   end
 end

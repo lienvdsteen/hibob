@@ -1,6 +1,10 @@
-
-
 ## [Unreleased]
+
+## [0.5.33]
+- Add `Employee#currency`
+- Add `Employee#base_pay`
+- Add `Employee#variable_pay`
+- Add `Employee#job_role_id`
 
 ## [0.5.32]
 - Add `Employee::CustomTables.remove_row` endpoint.
