@@ -14,13 +14,19 @@ require_relative 'employee/custom_tables'
 
 module Bob
   class Employees < API
-    def self.all(params = { includeHumanReadable: true })
+    def self.search( params = { humanReadable: 'replace' })
+      response = post('people/search', params)
+      EmployeeParser.new(JSON.parse(response)).employees
+    end
+
+    def self.all(params = { humanReadable: true })
       response = get('people', params)
       EmployeeParser.new(response).employees
     end
 
     def self.all_leavers(start_date:, end_date:)
-      all({ includeHumanReadable: true, showInactive: true }).select do |employee|
+      fields = ['internal.terminationDate', 'internal.status', 'root.id', 'root.displayName', 'work.title', 'work.reportsTo.email']
+      search({humanReadable: 'replace', showInactive: true, fields:}).select do |employee|
 
         next unless employee.internal.status == 'Inactive' && employee.internal.termination_date.present?
 
@@ -48,17 +54,17 @@ module Bob
       EmployeeParser.new(response).managers
     end
 
-    def self.starts_on(date = Date.current.to_s, params = { includeHumanReadable: true })
+    def self.starts_on(date = Date.current.to_s, params = { humanReadable: true })
       response = get('people', params)
       EmployeeParser.new(response).starters_on(date)
     end
 
-    def self.find(employee_id_or_email, params: { includeHumanReadable: true })
+    def self.find(employee_id_or_email, params: { humanReadable: true })
       response = get("people/#{employee_id_or_email}", params)
       EmployeeParser.new(response).employee
     end
 
-    def self.find_by(field:, value:, params: { includeHumanReadable: true })
+    def self.find_by(field:, value:, params: { humanReadable: true })
       all(params).find do |employee|
         employee.send(field) == value
       end

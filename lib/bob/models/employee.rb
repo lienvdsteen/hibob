@@ -2,12 +2,14 @@
 
 module Models
   class Employee < Models::Base
+    attr_reader :currency
+
     def manager?
       work.is_manager
     end
 
     def job_title
-      human_readable.work.title
+      work.title
     end
 
     def start_date
@@ -19,15 +21,15 @@ module Models
     end
 
     def division
-      human_readable.work.custom_columns&.column_1629151319875
+      work.custom_columns&.column_1629151319875
     end
 
     def team
-      human_readable.work.custom_columns&.column_1642024758438
+      work.custom_columns&.column_1642024758438
     end
 
     def entity
-      human_readable.work.custom_columns&.column_1633980105047
+      work.custom_columns&.column_1633980105047
     end
 
     def city
@@ -35,11 +37,11 @@ module Models
     end
 
     def country
-      address.country
+      address&.country
     end
 
     def role_level
-      human_readable.work.custom_columns.column_1629151373898
+      work.custom_columns.column_1629151373898
     end
 
     def has_manager?
@@ -47,7 +49,11 @@ module Models
     end
 
     def manager
-      work&.reports_to
+      work&.manager
+    end
+
+    def manager_email
+      work&.reports_to&.email
     end
 
     def has_second_level_manager?
@@ -75,7 +81,7 @@ module Models
     end
 
     def cost_center
-      human_readable.payroll&.custom&.field_1634476091511
+      payroll&.custom&.field_1634476091511
     end
 
     def personal_email
@@ -83,24 +89,23 @@ module Models
     end
 
     def linkedin_profile
-      human_readable.about.social_data&.linkedin
-    end
-
-    def currency
-      payroll.salary.payment.currency
+      about.social_data&.linkedin
     end
 
     def base_pay
-      payroll.salary.payment.value
+      @currency, part_two = payroll.salary.payment.slice!(0..0), payroll.salary.payment
+      part_two.to_f
     end
 
     def variable_pay
-      # TODO: check if we handle all the types with this field
-      payroll.variable.field_255298499.amount&.value || 0.0
+      return 0.0 unless payroll.variable&.field_255298499&.amount
+
+      _part_one, part_two = payroll.variable.field_255298499.amount.slice!(0..0), payroll.variable.field_255298499.amount
+      part_two.to_f
     end
 
     def job_role_id
-      human_readable.custom.category_1645574919835.field_1657052825123
+      custom.category_1645574919835.field_1657052825123
     end
   end
 end
