@@ -49,7 +49,7 @@ module Models
     end
 
     def manager
-      work&.manager
+      @manager ||= Bob::Employees.find(manager_email)
     end
 
     def manager_email
@@ -61,7 +61,7 @@ module Models
     end
 
     def second_level_manager
-      @second_level_manager ||= Bob::Employees.find(work&.second_level_manager)
+      @second_level_manager ||= Bob::Employees.find(manager.manager_email)
     end
 
     def has_third_level_manager?
@@ -69,7 +69,7 @@ module Models
     end
 
     def third_level_manager
-      second_level_manager&.manager
+      @third_level_manager ||= Bob::Employees.find(second_level_manager.manager_email)
     end
 
     def has_fourth_level_manager?
@@ -77,7 +77,7 @@ module Models
     end
 
     def fourth_level_manager
-      second_level_manager&.second_level_manager
+      Bob::Employees.find(third_level_manager.manager_email)
     end
 
     def cost_center
@@ -98,7 +98,7 @@ module Models
     end
 
     def variable_pay
-      return 0.0 unless payroll.variable&.field_255298499&.amount
+      return 0.0 unless payroll.try(:variable)&.field_255298499&.amount
 
       _part_one, part_two = payroll.variable.field_255298499.amount.slice!(0..0), payroll.variable.field_255298499.amount
       part_two.to_f

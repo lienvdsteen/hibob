@@ -14,9 +14,23 @@ require_relative 'employee/custom_tables'
 
 module Bob
   class Employees < API
+    DEFAULT_FIELDS = ['root.id', 'root.email', 'work.startDate', 'root.firstName', 'root.surname', 'root.secondName', 'root.fullName',
+                      'root.displayName', 'work.title', 'home.privateEmail', 'work.reportsToIdInCompany',
+                      'work.reportsTo.email', 'work.manager', 'work.secondLevelManager', 'work.employeeIdInCompany',
+                      'payroll.employment.type', 'address.country', 'address.usaState', 'internal.lifecycleStatus',
+                      'work.department'].freeze
+
     def self.search( params = { humanReadable: 'replace' })
       response = post('people/search', params)
       EmployeeParser.new(JSON.parse(response)).employees
+    end
+
+    def self.find(employee_id_or_email, params = { humanReadable: 'replace' })
+      params[:fields] = (DEFAULT_FIELDS + params[:fields]).uniq if params[:fields]
+      params[:fields] = DEFAULT_FIELDS unless params[:fields]
+
+      response = post("people/#{employee_id_or_email}", params)
+      EmployeeParser.new(JSON.parse(response)).employee
     end
 
     def self.all(params = { humanReadable: true })
@@ -57,11 +71,6 @@ module Bob
     def self.starts_on(date = Date.current.to_s, params = { humanReadable: true })
       response = get('people', params)
       EmployeeParser.new(response).starters_on(date)
-    end
-
-    def self.find(employee_id_or_email, params: { humanReadable: true })
-      response = get("people/#{employee_id_or_email}", params)
-      EmployeeParser.new(response).employee
     end
 
     def self.find_by(field:, value:, params: { humanReadable: true })
