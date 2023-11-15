@@ -25,7 +25,7 @@ module Models
     end
 
     def team
-      work.custom_columns&.column_1642024758438
+      work.custom_columns.try(:column_1642024758438)
     end
 
     def entity
