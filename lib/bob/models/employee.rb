@@ -2,8 +2,6 @@
 
 module Models
   class Employee < Models::Base
-    attr_reader :currency
-
     def manager?
       work.is_manager
     end
@@ -49,11 +47,12 @@ module Models
     end
 
     def manager
+      return unless manager_email # has no manager, prob CEO
       @manager ||= Bob::Employees.find(manager_email)
     end
 
     def manager_email
-      work&.reports_to&.email
+      try(:work).try(:reports_to).try(:email)
     end
 
     def has_second_level_manager?
@@ -92,16 +91,20 @@ module Models
       about.social_data&.linkedin
     end
 
+    def currency
+      payroll.salary.payment.split(/\d/).first
+    end
+
+
     def base_pay
-      @currency, part_two = payroll.salary.payment.slice!(0..0), payroll.salary.payment
-      part_two.to_f
+      # split on first occurence of a digit
+      payroll.salary.payment.sub(currency, "").to_f
     end
 
     def variable_pay
       return 0.0 unless payroll.try(:variable)&.field_255298499&.amount
 
-      _part_one, part_two = payroll.variable.field_255298499.amount.slice!(0..0), payroll.variable.field_255298499.amount
-      part_two.to_f
+      payroll.variable.field_255298499.amount.sub(currency, "").to_f
     end
 
     def job_role_id
