@@ -60,6 +60,7 @@ module Models
     end
 
     def second_level_manager
+      return nil unless manager.manager_email
       @second_level_manager ||= Bob::Employees.find(manager.manager_email)
     end
 
@@ -68,6 +69,8 @@ module Models
     end
 
     def third_level_manager
+      return nil unless second_level_manager.manager_email
+
       @third_level_manager ||= Bob::Employees.find(second_level_manager.manager_email)
     end
 
@@ -76,6 +79,8 @@ module Models
     end
 
     def fourth_level_manager
+      return nil unless third_level_manager.manager_email
+
       Bob::Employees.find(third_level_manager.manager_email)
     end
 
