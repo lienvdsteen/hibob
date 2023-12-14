@@ -17,7 +17,7 @@ class EmployeeParser < BaseParser
 
   def starters_on(date)
     json_response['employees']
-      .select { |employee| employee['work']['startDate'] == date }
+      .select { |employee| Date.parse(employee['work']['startDate']) == date }
       .map { |attributes| Models::Employee.new(attributes) }
   end
 end
