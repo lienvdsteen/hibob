@@ -28,7 +28,7 @@ module Bob
       )
     rescue RestClient::BadRequest => e
       p e
-      response.code
+      response.code if response.try(:code)
     end
 
     def self.post_media(endpoint, params = {})

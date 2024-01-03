@@ -68,7 +68,7 @@ module Bob
       EmployeeParser.new(response).managers
     end
 
-    def self.starts_on(date = Date.current.to_s, params = { humanReadable: true })
+    def self.starts_on(date = Date.current, params = { humanReadable: true })
       response = get('people', params)
       EmployeeParser.new(response).starters_on(date)
     end
