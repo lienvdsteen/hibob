@@ -33,11 +33,6 @@ module Bob
       EmployeeParser.new(JSON.parse(response)).employee
     end
 
-    def self.all(params = { humanReadable: true })
-      response = get('people', params)
-      EmployeeParser.new(response).employees
-    end
-
     def self.all_leavers(start_date:, end_date:)
       fields = ['internal.terminationDate', 'internal.status', 'root.id', 'root.displayName', 'work.title', 'work.reportsTo.email']
       search({humanReadable: 'replace', showInactive: true, fields:}).select do |employee|
@@ -63,18 +58,19 @@ module Bob
       end
     end
 
-    def self.all_people_managers(params = { includeHumanReadable: true })
-      response = get('people', params)
-      EmployeeParser.new(response).managers
+    def self.starts_on(date = Date.current, params = { humanReadable: 'replace' })
+      params[:fields] = (DEFAULT_FIELDS + params[:fields]).uniq if params[:fields]
+      params[:fields] = DEFAULT_FIELDS unless params[:fields]
+
+      response = post('people/search', params)
+      EmployeeParser.new(JSON.parse(response)).starters_on(date)
     end
 
-    def self.starts_on(date = Date.current, params = { humanReadable: true })
-      response = get('people', params)
-      EmployeeParser.new(response).starters_on(date)
-    end
+    def self.find_by(field:, value:, params: { humanReadable: 'replace' })
+      params[:fields] = (DEFAULT_FIELDS + params[:fields]).uniq if params[:fields]
+      params[:fields] = DEFAULT_FIELDS unless params[:fields]
 
-    def self.find_by(field:, value:, params: { humanReadable: true })
-      all(params).find do |employee|
+      search(params).find do |employee|
         employee.send(field) == value
       end
     end
