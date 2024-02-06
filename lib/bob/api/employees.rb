@@ -15,7 +15,7 @@ require_relative 'employee/custom_tables'
 module Bob
   class Employees < API
     DEFAULT_FIELDS = ['root.id', 'root.email', 'work.startDate', 'root.firstName', 'root.surname', 'root.secondName', 'root.fullName',
-                      'root.displayName', 'work.title', 'home.privateEmail', 'work.reportsToIdInCompany',
+                      'root.displayName', 'work.title', 'home.privateEmail', 'work.reportsToIdInCompany', 'address.city',
                       'work.reportsTo.email', 'work.manager', 'work.secondLevelManager', 'work.employeeIdInCompany',
                       'payroll.employment.type', 'address.country', 'address.usaState', 'internal.lifecycleStatus',
                       'work.department', 'work.customColumns.column_1642024758438', 'work.customColumns.column_1629151319875'].freeze
