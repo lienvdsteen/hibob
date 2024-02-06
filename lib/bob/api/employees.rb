@@ -18,7 +18,7 @@ module Bob
                       'root.displayName', 'work.title', 'home.privateEmail', 'work.reportsToIdInCompany',
                       'work.reportsTo.email', 'work.manager', 'work.secondLevelManager', 'work.employeeIdInCompany',
                       'payroll.employment.type', 'address.country', 'address.usaState', 'internal.lifecycleStatus',
-                      'work.department'].freeze
+                      'work.department', 'work.customColumns.column_1642024758438', 'work.customColumns.column_1629151319875'].freeze
 
     def self.search( params = { humanReadable: 'replace' })
       response = post('people/search', params)
