@@ -18,7 +18,8 @@ module Bob
                       'root.displayName', 'work.title', 'home.privateEmail', 'work.reportsToIdInCompany', 'address.city',
                       'work.reportsTo.email', 'work.manager', 'work.secondLevelManager', 'work.employeeIdInCompany',
                       'payroll.employment.type', 'address.country', 'address.usaState', 'internal.lifecycleStatus',
-                      'work.department', 'work.customColumns.column_1642024758438', 'work.customColumns.column_1629151319875'].freeze
+                      'work.department', 'work.customColumns.column_1642024758438', 'work.customColumns.column_1629151319875',
+                      'about.socialData.linkedin'].freeze
 
     def self.search( params = { humanReadable: 'replace' })
       response = post('people/search', params)
