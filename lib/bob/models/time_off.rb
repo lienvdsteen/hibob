@@ -24,7 +24,7 @@ module Models
     end
 
     def total_days_off
-      (start_date...end_date).count + 1
+      (parsed_start_date...parsed_end_date).count + 1
     end
 
     private
