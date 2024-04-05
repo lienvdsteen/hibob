@@ -12,6 +12,7 @@ require_relative 'bob/webhooks'
 require_relative 'bob/models'
 require_relative 'bob/parsers'
 require_relative 'bob/util'
+require_relative 'bob/api/tasks'
 
 module Bob
   extend Configuration
