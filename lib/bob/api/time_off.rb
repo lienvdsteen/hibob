@@ -2,8 +2,8 @@
 
 module Bob
   class TimeOff < API
-    def self.all_changed_since(since)
-      response = get('timeoff/requests/changes', { since: since })['changes']
+    def self.all_changed_since(since, pending = false)
+      response = get('timeoff/requests/changes', { since:, pending: })['changes']
       TimeOffParser.new({ 'outs' => response }).events
     end
 
