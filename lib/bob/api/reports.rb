@@ -13,8 +13,7 @@ module Bob
     end
 
     def self.read_table_report(report_id)
-      response = get("people/custom-tables/metadata/#{report_id}")
-      JSON.parse(response)
+      get("people/custom-tables/metadata/#{report_id}")
     end
 
     def self.sftp_upload(sftp_details:, report_id:)
