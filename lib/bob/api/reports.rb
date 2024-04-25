@@ -12,6 +12,11 @@ module Bob
       get("company/reports/#{report_id}/download?format=csv", {}, csv_response: true)
     end
 
+    def self.read_table_report(report_id)
+      response = get("people/custom-tables/metadata/#{report_id}")
+      JSON.parse(response)
+    end
+
     def self.sftp_upload(sftp_details:, report_id:)
       file_name = read(report_id)
       uri = URI.parse("sftp://#{sftp_details[:host]}")
