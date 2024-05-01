@@ -35,7 +35,7 @@ module Bob
     end
 
     def self.all_leavers(start_date:, end_date:)
-      fields = ['internal.terminationDate', 'internal.status', 'root.id', 'root.displayName', 'work.title', 'work.reportsTo.email']
+      fields = ['internal.terminationDate', 'internal.status', 'root.id', 'root.displayName', 'work.title', 'work.reportsTo.email', 'root.email']
       search({humanReadable: 'replace', showInactive: true, fields:}).select do |employee|
 
         next unless employee.internal.status == 'Inactive' && employee.internal.termination_date.present?
