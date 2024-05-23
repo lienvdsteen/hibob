@@ -2,6 +2,18 @@
 
 module Models
   class Employee < Models::Base
+    def last_name
+      custom.field_1716448596128
+    end
+
+    def first_name
+      custom.field_1716448572063
+    end
+
+    def full_name
+      "#{first_name} #{last_name}"
+    end
+
     def manager?
       work.is_manager
     end
@@ -36,10 +48,6 @@ module Models
 
     def country
       address&.country
-    end
-
-    def role_level
-      work.custom_columns.column_1629151373898
     end
 
     def has_manager?
@@ -100,7 +108,6 @@ module Models
       payroll.salary.payment.split(/\d/).first
     end
 
-
     def base_pay
       # split on first occurence of a digit
       payroll.salary.payment.sub(currency, "").to_f
@@ -112,8 +119,17 @@ module Models
       payroll.variable.field_255298499.amount.sub(currency, "").to_f
     end
 
+    def job_role_row
+      @job_role_row ||= Bob::Employee::CustomTables.rows(id, 'category_1645574919835__table_1716392607454')&.first
+    end
+
+    def job_grade
+      job_role_row.column_1716393584611
+    end
+
     def job_role_id
-      custom.category_1645574919835.field_1657052825123
+      bob_job_role_ids = Bob::MetaData::CompanyLists.find('category_1645574919835__table_1716392607454.column_1716393584611')
+      bob_job_role_ids.find { |role_id| role_id.id == job_role_row.column_1716393584611 }.value
     end
   end
 end
