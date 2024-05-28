@@ -124,7 +124,8 @@ module Models
     end
 
     def job_grade
-      job_role_row.column_1716393584611
+      bob_job_role_grades = Bob::MetaData::CompanyLists.find('category_1645574919835__table_1716392607454.column_1716393179800')
+      bob_job_role_grades.find {|grade| grade.id == job_role_row.column_1716393179800}.value
     end
 
     def job_role_id
