@@ -93,7 +93,7 @@ module Models
     end
 
     def cost_center
-      payroll&.custom&.field_1634476091511
+      work.custom_columns&.column_1716304180219
     end
 
     def personal_email
