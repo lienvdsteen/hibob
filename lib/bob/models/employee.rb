@@ -3,11 +3,11 @@
 module Models
   class Employee < Models::Base
     def last_name
-      custom.field_1716448596128
+      custom&.field_1716448596128
     end
 
     def first_name
-      custom.field_1716448572063
+      custom&.field_1716448572063
     end
 
     def full_name
