@@ -105,10 +105,14 @@ module Models
     end
 
     def currency
+      return nil unless payroll.salary
+
       payroll.salary.payment.split(/\d/).first
     end
 
     def base_pay
+      return nil unless payroll.salary
+
       # split on first occurence of a digit
       payroll.salary.payment.sub(currency, "").to_f
     end
