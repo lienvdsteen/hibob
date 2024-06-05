@@ -2,16 +2,16 @@
 
 module Models
   class Employee < Models::Base
-    def last_name
+    def preferred_last_name
       custom&.field_1716448596128
     end
 
-    def first_name
+    def preferred_first_name
       custom&.field_1716448572063
     end
 
-    def full_name
-      "#{first_name} #{last_name}"
+    def preferred_full_name
+      "#{preferred_first_name} #{preferred_last_name}"
     end
 
     def manager?
