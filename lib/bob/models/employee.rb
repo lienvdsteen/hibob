@@ -124,11 +124,15 @@ module Models
     end
 
     def job_grade
+      return nil if job_role_row.nil?
+
       bob_job_role_grades = Bob::MetaData::CompanyLists.find('category_1645574919835__table_1716392607454.column_1716393179800')
       bob_job_role_grades.find {|grade| grade.id == job_role_row.column_1716393179800}.value
     end
 
     def job_role_id
+      return nil if job_role_row.nil?
+      
       bob_job_role_ids = Bob::MetaData::CompanyLists.find('category_1645574919835__table_1716392607454.column_1716393584611')
       bob_job_role_ids.find { |role_id| role_id.id == job_role_row.column_1716393584611 }.value
     end
