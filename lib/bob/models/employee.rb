@@ -27,11 +27,11 @@ module Models
     end
 
     def department
-      work&.department
+      work.try(:department)
     end
 
     def division
-      work&.custom_columns&.column_1629151319875
+      work.custom_columns.try(:column_1629151319875)
     end
 
     def team
@@ -105,13 +105,13 @@ module Models
     end
 
     def currency
-      return nil unless payroll.salary
+      return nil unless payroll.try(:salary).try(:payment)
 
       payroll.salary.payment.split(/\d/).first
     end
 
     def base_pay
-      return nil unless payroll.salary
+      return nil unless payroll.try(:salary).try(:payment)
 
       # split on first occurence of a digit
       payroll.salary.payment.sub(currency, "").to_f
