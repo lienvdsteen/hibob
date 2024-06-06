@@ -3,13 +3,13 @@
 module Bob
   module MetaData
     class CompanyLists < API
-      def self.all
-        response = get('company/named-lists')
+      def self.all(options = {includeArchived: false})
+        response = get('company/named-lists', options)
         CompanyListParser.new(response).lists
       end
 
-      def self.find(list_name)
-        response = get("company/named-lists/#{list_name}")
+      def self.find(list_name, options = {includeArchived: false})
+        response = get("company/named-lists/#{list_name}", options)
         CompanyListParser.new(response).list
       end
 
