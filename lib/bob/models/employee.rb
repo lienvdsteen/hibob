@@ -27,11 +27,11 @@ module Models
     end
 
     def department
-      work.department
+      work&.department
     end
 
     def division
-      work.custom_columns&.column_1629151319875
+      work&.custom_columns&.column_1629151319875
     end
 
     def team
