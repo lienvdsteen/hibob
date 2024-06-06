@@ -24,7 +24,7 @@ module Bob
 
     def self.search( params = { humanReadable: 'replace' })
       params[:fields] = DEFAULT_FIELDS unless params[:fields]
-      
+
       response = post('people/search', params)
       EmployeeParser.new(JSON.parse(response)).employees
     end
