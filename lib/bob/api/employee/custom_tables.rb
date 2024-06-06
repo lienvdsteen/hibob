@@ -3,8 +3,8 @@
 module Bob
   module Employee
     class CustomTables < API
-      def self.rows(employee_id, table_id)
-        response = get("people/custom-tables/#{employee_id}/#{table_id}")
+      def self.rows(employee_id, table_id, options = {includeHumanReadable: true})
+        response = get("people/custom-tables/#{employee_id}/#{table_id}", options)
         TableParser.new(response).rows
       end
 
