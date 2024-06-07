@@ -124,7 +124,7 @@ module Models
     end
 
     def job_role_row
-      @job_role_row ||= Bob::Employee::CustomTables.rows(id, 'category_1645574919835__table_1716392607454')&.first
+      @job_role_row ||= Bob::Employee::CustomTables.rows(id, 'category_1645574919835__table_1716392607454').max_by { |row| Date.parse(row.column_1716392634939) }
     end
 
     def job_grade
