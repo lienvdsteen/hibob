@@ -16,5 +16,10 @@ module Bob
       response = get("timeoff/employees/#{employee_id}/requests/#{request_id}")
       TimeOffParser.new(response).event
     end
+
+    def self.balance(employee_id, params)
+      response = get("timeoff/employees/#{employee_id}/balance", params)
+      TimeOffParser.new(response)
+    end
   end
 end
