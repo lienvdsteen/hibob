@@ -13,7 +13,7 @@ module Bob
       end
 
       def self.update_row(employee_id, table_id, row_id, row_data)
-        put("people/custom-tables/#{employee_id}/#{table_id}/#{row_id}", {RAW_BODY: row_data})
+        put("people/custom-tables/#{employee_id}/#{table_id}/#{row_id}", row_data)
       end
 
       def self.remove_row(employee_id, table_id, row_id)
