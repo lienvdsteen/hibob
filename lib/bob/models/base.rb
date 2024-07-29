@@ -14,5 +14,12 @@ module Models
         next
       end
     end
+
+    def dig_custom_field(field)
+      Bob.custom_fields[field][:dig_path].reduce(self) { |response, sub_field| response.send(sub_field) }
+    rescue NoMethodError => e
+      Rails.logger.info("Error: #{e.message}")
+      nil
+    end
   end
 end

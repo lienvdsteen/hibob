@@ -3,11 +3,11 @@
 module Models
   class Employee < Models::Base
     def preferred_last_name
-      custom&.field_1716448596128
+      dig_custom_field('PREFERRED_LAST_NAME')
     end
 
     def preferred_first_name
-      custom&.field_1716448572063
+      dig_custom_field('PREFERRED_FIRST_NAME')
     end
 
     def preferred_full_name
@@ -31,15 +31,15 @@ module Models
     end
 
     def division
-      work.custom_columns.try(:column_1629151319875)
+      dig_custom_field('DIVISION')
     end
 
     def team
-      work.custom_columns.try(:column_1642024758438)
+      dig_custom_field('SUB_DIVISION')
     end
 
     def entity
-      work.custom_columns&.column_1633980105047
+      dig_custom_field('EMPLOYER')
     end
 
     def city
@@ -56,6 +56,7 @@ module Models
 
     def manager
       return unless manager_email # has no manager, prob CEO
+
       @manager ||= Bob::Employees.find(manager_email)
     end
 
@@ -69,6 +70,7 @@ module Models
 
     def second_level_manager
       return nil unless manager.manager_email
+
       @second_level_manager ||= Bob::Employees.find(manager.manager_email)
     end
 
@@ -93,7 +95,7 @@ module Models
     end
 
     def cost_center
-      work.custom_columns&.column_1716304180219
+      dig_custom_field('COST_CENTER')
     end
 
     def personal_email
@@ -114,17 +116,20 @@ module Models
       return nil unless payroll.try(:salary).try(:payment)
 
       # split on first occurence of a digit
-      payroll.salary.payment.sub(currency, "").to_f
+      payroll.salary.payment.sub(currency, '').to_f
     end
 
     def variable_pay
       return 0.0 unless payroll.try(:variable)&.field_255298499&.amount
 
-      payroll.variable.field_255298499.amount.sub(currency, "").to_f
+      payroll.variable.field_255298499.amount.sub(currency, '').to_f
     end
 
     def job_role_row
-      @job_role_row ||= Bob::Employee::CustomTables.rows(id, 'category_1645574919835__table_1716392607454').max_by { |row| Date.parse(row.column_1716392634939) }
+      @job_role_row ||= Bob::Employee::CustomTables.rows(id,
+                                                         'category_1645574919835__table_1716392607454').max_by do |row|
+        Date.parse(row.column_1716392634939)
+      end
     end
 
     def job_grade

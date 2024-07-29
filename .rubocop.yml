@@ -5,7 +5,6 @@ require:
   - rubocop-rake
 
 AllCops:
-  TargetRubyVersion: 3.0
   NewCops: enable
 
 Style/StringLiteralsInInterpolation:
@@ -25,3 +24,6 @@ Naming/PredicateName:
   ForbiddenPrefixes:
     - is_
     - have_
+
+Metrics/ClassLength:
+  Enabled: false
