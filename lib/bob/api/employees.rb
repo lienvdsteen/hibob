@@ -30,7 +30,6 @@ module Bob
     def self.find(employee_id_or_email, params = { humanReadable: 'replace' })
       params[:fields] = (DEFAULT_FIELDS + params[:fields] + Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}).uniq if params[:fields]
       params[:fields] = (DEFAULT_FIELDS +  Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}) unless params[:fields]
-      binding.break
 
       response = post("people/#{employee_id_or_email}", params)
       EmployeeParser.new(JSON.parse(response)).employee
