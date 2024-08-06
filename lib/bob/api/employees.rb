@@ -30,6 +30,7 @@ module Bob
     def self.find(employee_id_or_email, params = { humanReadable: 'replace' })
       params[:fields] = (DEFAULT_FIELDS + params[:fields] + Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}).uniq if params[:fields]
       params[:fields] = (DEFAULT_FIELDS +  Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}) unless params[:fields]
+      binding.break
 
       response = post("people/#{employee_id_or_email}", params)
       EmployeeParser.new(JSON.parse(response)).employee
@@ -79,6 +80,15 @@ module Bob
 
     def self.update(employee_id:, params:)
       put("people/#{employee_id}", params)
+    end
+
+    def self.update_custom_field(employee_id:, field:, value:)
+      temp_params = { Bob.custom_fields[field][:dig_path].reverse[0] => value }
+      Bob.custom_fields[field][:dig_path].reverse.drop(1).each do |field|
+        temp_params = { field => temp_params }
+      end
+
+      update(employee_id: employee_id, params: temp_params)
     end
 
     # start date needs to be in ISO format
