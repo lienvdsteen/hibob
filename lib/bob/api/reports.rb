@@ -9,7 +9,9 @@ module Bob
     end
 
     def self.read(report_id, params = {})
-      get("company/reports/#{report_id}/download?format=csv", params, csv_response: true)
+      params = {format: 'csv'}.merge(params)
+
+      get("company/reports/#{report_id}/download", params, csv_response: true)
     end
 
     def self.read_table_report(report_id)
