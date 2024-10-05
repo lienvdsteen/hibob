@@ -11,6 +11,7 @@ require_relative 'employee/lifecycle_history'
 require_relative 'employee/time_off'
 require_relative 'employee/employment_history'
 require_relative 'employee/custom_tables'
+require_relative 'employee/payroll'
 
 module Bob
   class Employees < API
@@ -20,7 +21,7 @@ module Bob
                       'address.country', 'address.usaState', 'internal.lifecycleStatus', 'work.department',
                       'about.socialData.linkedin'].freeze
 
-    def self.search( params = { humanReadable: 'replace' })
+    def self.search(params = { humanReadable: 'replace' })
       params[:fields] = DEFAULT_FIELDS unless params[:fields]
 
       response = post('people/search', params)
@@ -28,17 +29,25 @@ module Bob
     end
 
     def self.find(employee_id_or_email, params = { humanReadable: 'replace' })
-      params[:fields] = (DEFAULT_FIELDS + params[:fields] + Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}).uniq if params[:fields]
-      params[:fields] = (DEFAULT_FIELDS +  Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}) unless params[:fields]
+      if params[:fields]
+        params[:fields] = (DEFAULT_FIELDS + params[:fields] + Bob.default_custom_fields.map do |dcf|
+          Bob.custom_fields[dcf][:api_field]
+        end).uniq
+      end
+      unless params[:fields]
+        params[:fields] = (DEFAULT_FIELDS + Bob.default_custom_fields.map do |dcf|
+          Bob.custom_fields[dcf][:api_field]
+        end)
+      end
 
       response = post("people/#{employee_id_or_email}", params)
       EmployeeParser.new(JSON.parse(response)).employee
     end
 
     def self.all_leavers(start_date:, end_date:)
-      fields = ['internal.terminationDate', 'internal.status', 'root.id', 'root.displayName', 'work.title', 'work.reportsTo.email', 'root.email']
-      search({humanReadable: 'replace', showInactive: true, fields:}).select do |employee|
-
+      fields = ['internal.terminationDate', 'internal.status', 'root.id', 'root.displayName', 'work.title',
+                'work.reportsTo.email', 'root.email']
+      search({ humanReadable: 'replace', showInactive: true, fields: }).select do |employee|
         next unless employee.internal.status == 'Inactive' && employee.internal.termination_date.present?
 
         # Don't process employees that left before the period we are looking into
@@ -61,16 +70,32 @@ module Bob
     end
 
     def self.starts_on(date = Date.current, params = { humanReadable: 'replace' })
-      params[:fields] = (DEFAULT_FIELDS + params[:fields] + Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}).uniq if params[:fields]
-      params[:fields] = (DEFAULT_FIELDS +  Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}) unless params[:fields]
+      if params[:fields]
+        params[:fields] = (DEFAULT_FIELDS + params[:fields] + Bob.default_custom_fields.map do |dcf|
+          Bob.custom_fields[dcf][:api_field]
+        end).uniq
+      end
+      unless params[:fields]
+        params[:fields] = (DEFAULT_FIELDS + Bob.default_custom_fields.map do |dcf|
+          Bob.custom_fields[dcf][:api_field]
+        end)
+      end
 
       response = post('people/search', params)
       EmployeeParser.new(JSON.parse(response)).starters_on(date)
     end
 
     def self.find_by(field:, value:, params: { humanReadable: 'replace' })
-      params[:fields] = (DEFAULT_FIELDS + params[:fields] + Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}).uniq if params[:fields]
-      params[:fields] = (DEFAULT_FIELDS +  Bob.default_custom_fields.map {|dcf| Bob.custom_fields[dcf][:api_field]}) unless params[:fields]
+      if params[:fields]
+        params[:fields] = (DEFAULT_FIELDS + params[:fields] + Bob.default_custom_fields.map do |dcf|
+          Bob.custom_fields[dcf][:api_field]
+        end).uniq
+      end
+      unless params[:fields]
+        params[:fields] = (DEFAULT_FIELDS + Bob.default_custom_fields.map do |dcf|
+          Bob.custom_fields[dcf][:api_field]
+        end)
+      end
 
       search(params).find do |employee|
         employee.send(field) == value
@@ -87,7 +112,7 @@ module Bob
         temp_params = { field => temp_params }
       end
 
-      update(employee_id: employee_id, params: temp_params)
+      update(employee_id:, params: temp_params)
     end
 
     # start date needs to be in ISO format
@@ -96,7 +121,7 @@ module Bob
     end
 
     def self.update_email(employee_id, email)
-      put("people/#{employee_id}/email", { email: email })
+      put("people/#{employee_id}/email", { email: })
     end
   end
 end

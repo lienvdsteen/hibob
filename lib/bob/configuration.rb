@@ -25,9 +25,9 @@ module Bob
     # Resets all configuration options to the defaults.
     def reset
       self.api_version = 'v1'
-      self.access_token = ENV['ACCESS_TOKEN']
-      self.access_user_name = ENV['ACCESS_USER_NAME']
-      self.api_key = ENV['API_KEY']
+      self.access_token = ENV.fetch('ACCESS_TOKEN', nil)
+      self.access_user_name = ENV.fetch('ACCESS_USER_NAME', nil)
+      self.api_key = ENV.fetch('API_KEY', nil)
       self.use_sandbox = false
       self.custom_tables = {}
       self.custom_fields = {}

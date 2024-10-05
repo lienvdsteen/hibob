@@ -24,7 +24,7 @@ module Bob
       response = RestClient.post(
         url,
         params.to_json,
-        authorization_header(use_api_key: use_api_key).merge(content_headers)
+        authorization_header(use_api_key:).merge(content_headers)
       )
     rescue RestClient::BadRequest => e
       p e
@@ -64,7 +64,7 @@ module Bob
       response = RestClient.put(
         url,
         params.to_json,
-        authorization_header(use_api_key: use_api_key).merge(content_headers)
+        authorization_header(use_api_key:).merge(content_headers)
       )
       response.code
     end

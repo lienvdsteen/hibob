@@ -9,7 +9,7 @@ module Bob
     end
 
     def self.read(report_id, params = {})
-      params = {format: 'csv'}.merge(params)
+      params = { format: 'csv' }.merge(params)
 
       get("company/reports/#{report_id}/download", params, csv_response: true)
     end

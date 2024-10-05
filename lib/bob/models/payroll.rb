@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module Models
-  class Training < Models::Base
+  class Payroll < Models::Base
   end
 end
