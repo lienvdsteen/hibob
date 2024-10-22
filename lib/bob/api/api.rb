@@ -13,18 +13,18 @@ module Bob
 
     def self.get(endpoint, params = {}, csv_response: false)
       url = build_url(endpoint, params)
-      response = RestClient.get(url, authorization_header)
+      response = RestClient.get(url, content_headers)
       return create_csv(response.body) if csv_response
 
       JSON.parse(response.body)
     end
 
-    def self.post(endpoint, params = {}, use_api_key: false)
+    def self.post(endpoint, params = {})
       url = build_url(endpoint)
       response = RestClient.post(
         url,
         params.to_json,
-        authorization_header(use_api_key: use_api_key).merge(content_headers)
+        content_headers
       )
     rescue RestClient::BadRequest => e
       p e
@@ -33,7 +33,7 @@ module Bob
 
     def self.post_media(endpoint, params = {})
       url = build_url(endpoint)
-      response = RestClient.post(url, params.to_json, authorization_header.merge(content_headers))
+      response = RestClient.post(url, params.to_json, content_headers)
       response.code
     end
 
@@ -55,36 +55,25 @@ module Bob
 
     def self.delete(endpoint)
       url = build_url(endpoint)
-      response = RestClient.delete(url, authorization_header)
+      response = RestClient.delete(url, content_headers)
       response.code
     end
 
-    def self.put(endpoint, params = {}, use_api_key: false)
+    def self.put(endpoint, params = {})
       url = build_url(endpoint)
       response = RestClient.put(
         url,
         params.to_json,
-        authorization_header(use_api_key: use_api_key).merge(content_headers)
+        content_headers
       )
       response.code
-    end
-
-    def self.authorization_header(use_api_key: false)
-      if use_api_key
-        {
-          Authorization: Bob.api_key
-        }
-      else
-        {
-          Authorization: "Basic #{Base64.strict_encode64("#{Bob.access_user_name}:#{Bob.access_token}")}"
-        }
-      end
     end
 
     def self.content_headers
       {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: "Basic #{Base64.strict_encode64("#{Bob.access_user_name}:#{Bob.access_token}")}"
       }
     end
 
