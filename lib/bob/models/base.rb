@@ -2,7 +2,7 @@
 
 module Models
   class Base
-    def initialize(raw) # rubocop:disable Metrics/AbcSize
+    def initialize(raw)
       attributes = Bob::Util.underscorize_hash(raw)
 
       attributes.each do |k, v|

@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Ruby gem for Bob API'
   spec.homepage      = 'https://github.com/lienvdsteen/hibob'
   spec.license       = 'MIT'
-  spec.required_ruby_version = '>= 3.0'
+  spec.required_ruby_version = '>= 3.2'
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/lienvdsteen/hibob'
@@ -25,9 +25,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'json'
-  spec.add_runtime_dependency 'net-sftp'
-  spec.add_runtime_dependency 'rest-client', '~> 2.0'
+  spec.add_dependency 'json'
+  spec.add_dependency 'net-sftp'
+  spec.add_dependency 'rest-client', '~> 2.0'
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
