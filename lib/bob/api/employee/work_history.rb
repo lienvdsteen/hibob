@@ -15,8 +15,7 @@ module Bob
       def self.update(employee_id, work_history_id, params)
         put(
           "people/#{employee_id}/work/#{work_history_id}",
-          params,
-          use_api_key: true
+          params
         )
       end
 
