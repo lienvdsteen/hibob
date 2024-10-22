@@ -13,7 +13,7 @@ module Bob
 
     def self.get(endpoint, params = {}, csv_response: false)
       url = build_url(endpoint, params)
-      response = RestClient.get(url, content_headers)
+      response = RestClient.get(url, headers)
       return create_csv(response.body) if csv_response
 
       JSON.parse(response.body)
@@ -24,7 +24,7 @@ module Bob
       response = RestClient.post(
         url,
         params.to_json,
-        content_headers
+        headers
       )
     rescue RestClient::BadRequest => e
       p e
@@ -33,7 +33,7 @@ module Bob
 
     def self.post_media(endpoint, params = {})
       url = build_url(endpoint)
-      response = RestClient.post(url, params.to_json, content_headers)
+      response = RestClient.post(url, params.to_json, headers)
       response.code
     end
 
@@ -44,18 +44,13 @@ module Bob
         file: File.new(file_path)
       }
 
-      headers = {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
-        Authorization: "Basic #{Base64.strict_encode64("#{Bob.access_user_name}:#{Bob.access_token}")}"
-      }
-      response = RestClient.post(url, payload, headers)
+      response = RestClient.post(url, payload, headers.merge({ 'Content-Type': 'multipart/form-data' }))
       response.code
     end
 
     def self.delete(endpoint)
       url = build_url(endpoint)
-      response = RestClient.delete(url, content_headers)
+      response = RestClient.delete(url, headers)
       response.code
     end
 
@@ -64,12 +59,12 @@ module Bob
       response = RestClient.put(
         url,
         params.to_json,
-        content_headers
+        headers
       )
       response.code
     end
 
-    def self.content_headers
+    def self.headers
       {
         Accept: 'application/json',
         'Content-Type': 'application/json',
