@@ -2,7 +2,7 @@
 
 module Bob
   module Configuration
-    VALID_OPTIONS_KEYS = %i[access_token access_user_name api_version api_key use_sandbox custom_tables custom_fields
+    VALID_OPTIONS_KEYS = %i[access_token access_user_name api_version use_sandbox custom_tables custom_fields
                             default_custom_fields].freeze
     attr_accessor(*VALID_OPTIONS_KEYS)
 
@@ -27,7 +27,6 @@ module Bob
       self.api_version = 'v1'
       self.access_token = ENV.fetch('ACCESS_TOKEN', nil)
       self.access_user_name = ENV.fetch('ACCESS_USER_NAME', nil)
-      self.api_key = ENV.fetch('API_KEY', nil)
       self.use_sandbox = false
       self.custom_tables = {}
       self.custom_fields = {}
