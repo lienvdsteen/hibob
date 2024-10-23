@@ -65,7 +65,7 @@ module Models
     end
 
     def has_second_level_manager?
-      work&.second_level_manager.present?
+      second_level_manager.present?
     end
 
     def second_level_manager
