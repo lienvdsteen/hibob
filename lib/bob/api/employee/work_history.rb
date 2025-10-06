@@ -5,10 +5,9 @@ module Bob
     class WorkHistory < API
       def self.all(employee_id, include_raw: false)
         response = get("people/#{employee_id}/work")
-        parsed = WorkHistoryParser.new(response).work_histories
-        return { data: parsed, raw: response.values.first } if include_raw
+        return { raw: response.values.first } if include_raw
 
-        parsed
+        WorkHistoryParser.new(response).work_histories
       end
 
       def self.create(employee_id, params)
